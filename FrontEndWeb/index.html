@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piaget Dashboard - DevOps</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <h2>🎓 Piaget</h2>
+      </div>
+      <nav>
+        <a href="#" class="nav-item active" data-page="dashboard"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="#" class="nav-item" data-page="escolas"><i class="fas fa-school"></i> Escolas</a>
+        <a href="#" class="nav-item" data-page="alunos"><i class="fas fa-user-graduate"></i> Alunos</a>
+        <a href="#" class="nav-item" data-page="professores"><i class="fas fa-chalkboard-teacher"></i> Professores</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="topbar">
+        <h1 id="page-title">Dashboard</h1>
+        <div class="user-info">
+          <span>Bem-vindo, Francisco</span>
+        </div>
+      </header>
+
+      <div class="content" id="content">
+        <!-- Conteúdo dinâmico via JS -->
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
