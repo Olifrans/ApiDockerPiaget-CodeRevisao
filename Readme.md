@@ -3,7 +3,7 @@
 
 ## ?? Descrição do Projeto
 
-Este projeto consiste em uma **Web API REST** desenvolvida em .NET 8 para gerenciamento de uma escola, contendo as entidades **Escola**, **Aluno** e **Professor** com seus relacionamentos.
+Projeto consiste em uma **Web API REST** desenvolvida em .NET 8 para gerenciamento de uma escola, contendo as entidades **Escola**, **Aluno** e **Professor** com seus relacionamentos.
 
 O projeto foi desenvolvido como **trabalho prático** do curso de **DevOps**, com forte ênfase em containerização, automação, boas práticas de desenvolvimento e preparação para deploy em nuvem.
 
@@ -163,12 +163,6 @@ Health Checks:
 - Testes unitários e de integração
 
 
-## ????? Professor / Aluno
-
-**Disciplina**: DevOps & Cloud Computing  
-**Aluno**: Francisco  
-**Objetivo**: Demonstrar na prática os conceitos aprendidos nas Aulas 2 a 16.
-
 
 
 # INSERTs Completo (SQL Server)
@@ -202,7 +196,6 @@ INSERT INTO Professores (Nome, Email, Disciplina, Titulacao, EscolaId) VALUES
 ('Prof. Roberto Mendes', 'roberto.mendes@escola.com', 'História', 'Especialista', 1),
 ('Profª Fernanda Lima', 'fernanda.lima@escola.com', 'Ciências', 'Mestre', 2),
 ('Prof. Marcos Silva', 'marcos.silva@escola.com', 'Inglês', 'Especialista', 2);
-
 
 
 
