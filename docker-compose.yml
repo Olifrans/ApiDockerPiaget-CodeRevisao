@@ -1,19 +1,4 @@
-version: '3.8'
-
 services:
-  db:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: piaget-sql
-    environment:
-      SA_PASSWORD: "SenhaForte@123"
-      ACCEPT_EULA: "Y"
-      MSSQL_PID: "Express"
-    ports:
-      - "1433:1433"
-    volumes:
-      - piaget_sql_data:/var/opt/mssql
-    restart: unless-stopped
-
   api:
     build: .
     container_name: piaget-api
@@ -21,10 +6,22 @@ services:
       - "8080:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=db;Database=ApiPiagetDocker;User Id=sa;Password=SenhaForte@123;TrustServerCertificate=True;MultipleActiveResultSets=true;
     depends_on:
       - db
     restart: unless-stopped
 
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: piaget-db
+    environment:
+      SA_PASSWORD: "SenhaForte@123"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+    restart: unless-stopped
+
 volumes:
-  piaget_sql_data:
+  sql_data:

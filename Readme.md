@@ -1,56 +1,101 @@
+Ôªø
+# üéì API Escola Piaget - DevOps & Cloud Computing
+**Projeto Final - Curso de DevOps**
 
-# API Escola Piaget - DevOps & Cloud Computing
+---
 
-## ?? DescriÁ„o do Projeto
+## üìã Sobre o Projeto
+API REST desenvolvida em **.NET 8** para gerenciamento escolar, contendo as entidades **Escola**, **Aluno** e **Professor**. 
+O projeto foi constru√≠do com foco em **boas pr√°ticas DevOps**, containeriza√ß√£o e prepara√ß√£o para nuvem, aplicando os conceitos aprendidos durante o curso.
 
-Projeto consiste em uma **Web API REST** desenvolvida em .NET 8 para gerenciamento de uma escola, contendo as entidades **Escola**, **Aluno** e **Professor** com seus relacionamentos.
+---
 
-O projeto foi desenvolvido como **trabalho pr·tico** do curso de **DevOps**, com forte Ínfase em containerizaÁ„o, automaÁ„o, boas pr·ticas de desenvolvimento e preparaÁ„o para deploy em nuvem.
+## üéØ Objetivos do Projeto
+- Aplicar os conceitos de **Cultura DevOps** (colabora√ß√£o, automa√ß√£o e CI/CD)
+- Praticar **Containeriza√ß√£o** com Docker
+- Implementar **Infraestrutura como C√≥digo (IaC)**
+- Utilizar boas pr√°ticas de desenvolvimento (DTOs, Valida√ß√£o, AutoMapper)
+- Preparar a aplica√ß√£o para deploy em nuvem
+
+---
+
+## üõ†Ô∏è Tecnologias Utilizadas
+| Tecnologia                        | Vers√£o      | Finalidade |
+|----------------------------------|-------------|----------|
+| .NET                             | 8.0         | Framework |
+| ASP.NET Core Web API             | 8.0         | API REST |
+| Entity Framework Core            | 8.0         | ORM |
+| SQL Server                       | 2022        | Banco de Dados |
+| AutoMapper                       | -           | Mapeamento |
+| FluentValidation                 | -           | Valida√ß√£o |
+| Swagger / OpenAPI                | -           | Documenta√ß√£o |
+| Docker + Docker Compose          | -           | Containeriza√ß√£o |
+| Health Checks                    | -           | Monitoramento |
+
+---
+
+## üèóÔ∏è Estrutura do Projeto
+```
+ApiDockerPiaget/
+‚îú‚îÄ‚îÄ Controllers/          ‚Üí Escolas, Alunos e Professores
+‚îú‚îÄ‚îÄ Data/                 ‚Üí AppDbContext
+‚îú‚îÄ‚îÄ DTOs/                 ‚Üí Objetos de transfer√™ncia
+‚îú‚îÄ‚îÄ Models/               ‚Üí Entidades
+‚îú‚îÄ‚îÄ Mappings/             ‚Üí AutoMapper Profile
+‚îú‚îÄ‚îÄ Validators/           ‚Üí FluentValidation
+‚îú‚îÄ‚îÄ HealthChecks/         ‚Üí Health Checks personalizados
+‚îú‚îÄ‚îÄ Middleware/           ‚Üí Global Exception Handler
+‚îú‚îÄ‚îÄ Dockerfile
+‚îú‚îÄ‚îÄ docker-compose.yml
+‚îî‚îÄ‚îÄ appsettings.Development.json
+```
+
+---
 
 
 
-## ?? Objetivos Alinhados ao Curso
+## üöÄ Como Executar o Projeto
+### Op√ß√£o 1: Com Docker (Recomendado)
 
-- **MÛdulo 1**: AplicaÁ„o dos conceitos b·sicos de DevOps, Cultura DevOps (colaboraÁ„o, automaÁ„o e CI/CD).
-- **MÛdulo 2**: UtilizaÁ„o de Cloud Computing (IaaS) atravÈs de containers.
-- **MÛdulo 3**: Pr·tica com **Docker** (Aula 11), containerizaÁ„o e preparaÁ„o para Kubernetes (Aula 12) e Pipeline CI/CD (Aula 13).
-- **MÛdulo 4**: AplicaÁ„o de boas pr·ticas de seguranÁa em aplicaÁıes DevOps.
+```bash
+# 1. Na raiz do projeto
+docker-compose down --rmi all
+
+# 2. Build e executar
+docker-compose up --build
+```
 
 
+A API estar√° dispon√≠vel em: **http://localhost:8080**
 
-## ??? Tecnologias Utilizadas
+Swagger: **http://localhost:8080/swagger**
 
-| Tecnologia                    | Vers„o     | PropÛsito |
-|------------------------------|------------|---------|
-| .NET                         | 8.0        | Framework principal |
-| ASP.NET Core Web API         | 8.0        | CriaÁ„o da API REST |
-| Entity Framework Core        | 8.0        | ORM e persistÍncia |
-| SQL Server                   | 2022       | Banco de dados |
-| AutoMapper                   | -          | Mapeamento de objetos |
-| FluentValidation             | -          | ValidaÁ„o de DTOs |
-| Swagger / OpenAPI            | -          | DocumentaÁ„o da API |
-| Docker                       | -          | ContainerizaÁ„o |
-| Docker Compose               | -          | OrquestraÁ„o de containers |
-| Health Checks                | -          | Monitoramento de sa˙de |
-| CORS                         | -          | ComunicaÁ„o com frontends |
+Health Check: **http://localhost:8080/health**
+
+### Op√ß√£o 2: Local (sem Docker)
+
+```bash
+dotnet restore
+dotnet run
+```
+
 
 
 
 ## ? Funcionalidades
 
-- CRUD completo para **Escolas**, **Alunos** e **Professores**
+- CRUD completo para Escolas, Alunos e Professores
 - Relacionamentos um-para-muitos (Escola ? Alunos/Professores)
-- ValidaÁ„o avanÁada com FluentValidation
-- Mapeamento autom·tico com AutoMapper
-- Tratamento global de exceÁıes
+- Valida√ß√£o avan√ßada com FluentValidation
+- Mapeamento autom√°tico com AutoMapper
+- Tratamento global de exce√ß√µes
 - Health Checks personalizados
-- DocumentaÁ„o interativa com Swagger
+- Documenta√ß√£o interativa com Swagger
 - Totalmente containerizado com Docker
 
 
 
 ## ??? Arquitetura do Projeto
-
 ### Estrutura de Pastas
 
 ApiDockerPiaget/
@@ -115,52 +160,87 @@ Acesse: `http://localhost:5254/swagger`
 docker-compose up --build
 
 
-A API estar· disponÌvel em: `http://localhost:8080`
+A API estar√° dispon√≠vel em: `http://localhost:8080`
 Health Checks:
 - `http://localhost:8080/health`
 - `http://localhost:8080/health/ready`
 
 
 
-## ?? Endpoints Principais
-
-| MÈtodo | Endpoint              | DescriÁ„o |
-|--------|-----------------------|---------|
-| GET    | `/api/Escolas`        | Listar todas as escolas |
-| GET    | `/api/Alunos`         | Listar todos os alunos |
-| GET    | `/api/Professores`    | Listar todos os professores |
-| POST   | `/api/Alunos`         | Cadastrar aluno |
-| PUT    | `/api/Escolas/{id}`   | Atualizar escola |
 
 
+---
 
-## ??? Boas Pr·ticas de SeguranÁa (MÛdulo 4)
+## üì° Principais Endpoints
 
-- ValidaÁ„o de entrada com FluentValidation
-- Tratamento global de exceÁıes
+| M√©todo | Endpoint                    | Descri√ß√£o |
+|--------|-----------------------------|---------|
+| GET    | `/api/Escolas`              | Listar escolas |
+| GET    | `/api/Alunos`               | Listar alunos |
+| GET    | `/api/Professores`          | Listar professores |
+| POST   | `/api/Alunos`               | Cadastrar aluno |
+| PUT    | `/api/Escolas/{id}`         | Atualizar escola |
+
+---
+
+## üõ°Ô∏è Boas Pr√°ticas Implementadas
+
+- Uso de **DTOs** para seguran√ßa
+- Valida√ß√£o com **FluentValidation**
+- Mapeamento autom√°tico com **AutoMapper**
+- Tratamento global de exce√ß√µes
+- Health Checks
 - CORS configurado
-- Health Checks para monitoramento
-- Uso de DTOs para n„o expor entidades diretamente
+- Separa√ß√£o clara de responsabilidades
+
+---
+
+## üê≥ Docker & DevOps
+
+- **Dockerfile** multi-stage (otimizado)
+- **docker-compose** com API + Banco de dados
+- Infraestrutura como C√≥digo (IaC)
+- Preparado para CI/CD e Kubernetes
+
+---
+
+## üìä Diagrama de Relacionamentos
+
+```mermaid
+classDiagram
+    Escola "1" --> "N" Aluno
+    Escola "1" --> "N" Professor
+
+    class Escola {
+        +int Id
+        +string Nome
+        +string Endereco
+        +string Cidade
+    }
+    class Aluno {
+        +int Id
+        +string Nome
+        +string Email
+        +DateTime DataNascimento
+    }
+    class Professor {
+        +int Id
+        +string Nome
+        +string Disciplina
+    }
+```
 
 
 
-## ?? DevOps & Cloud Computing Aplicados
 
-- **Infraestrutura como CÛdigo (IaC)**: `docker-compose.yml`
-- **ContainerizaÁ„o**: Docker + Multi-stage build
-- **AutomaÁ„o**: Preparado para CI/CD (GitHub Actions / Azure DevOps)
-- **Cultura DevOps**: SeparaÁ„o clara de responsabilidades, colaboraÁ„o entre Dev e Ops
-- **Cloud Ready**: F·cil deploy em Azure, AWS ou GCP (IaaS / PaaS)
+## ?? Pr√≥ximos Passos (Melhorias Futuras)
 
-
-## ?? PrÛximos Passos (Melhorias Futuras)
-
-- ImplementaÁ„o de **Kubernetes** (Aula 12)
-- Pipeline completo de **CI/CD** (Aula 13)
+- Implementa√ß√£o de Kubernetes (Aula 12)
+- Pipeline completo de CI/CD (Aula 13)
 - Deploy na nuvem (Azure App Service ou AWS ECS)
-- AutenticaÁ„o e AutorizaÁ„o (JWT)
+- Autentica√ß√£o e Autoriza√ß√£o (JWT)
 - Logging centralizado (Serilog + Seq)
-- Testes unit·rios e de integraÁ„o
+- Testes unit√°rios e de integra√ß√£o
 
 
 
@@ -171,34 +251,31 @@ Health Checks:
 -- =============================================
 
 INSERT INTO Escolas (Nome, Endereco, Cidade, Telefone) VALUES 
-('Escola Piaget', 'Rua das Flores, 123', 'S„o Paulo', '(11) 98765-4321'),
-('ColÈgio Einstein', 'Av. Paulista, 1500', 'S„o Paulo', '(11) 3456-7890'),
-('Instituto Montessori', 'Rua das Ac·cias, 450', 'Campinas', '(19) 98765-1234');
+('Escola Piaget', 'Rua das Flores, 123', 'S√£o Paulo', '(11) 98765-4321'),
+('Col√©gio Einstein', 'Av. Paulista, 1500', 'S√£o Paulo', '(11) 3456-7890'),
+('Instituto Montessori', 'Rua das Ac√°cias, 450', 'Campinas', '(19) 98765-1234');
 
 -- =============================================
 -- INSERIR ALUNOS
 -- =============================================
 
 INSERT INTO Alunos (Nome, Email, DataNascimento, Serie, EscolaId) VALUES 
-('Jo„o Silva', 'joao.silva@email.com', '2015-05-12', '6∫ Ano', 1),
-('Maria Oliveira', 'maria.oliveira@email.com', '2014-08-25', '7∫ Ano', 1),
-('Pedro Santos', 'pedro.santos@email.com', '2016-01-10', '5∫ Ano', 1),
-('Ana Clara Mendes', 'ana.mendes@email.com', '2013-11-30', '8∫ Ano', 2),
-('Lucas Ferreira', 'lucas.ferreira@email.com', '2015-03-18', '6∫ Ano', 2);
+('Jo√£o Silva', 'joao.silva@email.com', '2015-05-12', '6¬∫ Ano', 1),
+('Maria Oliveira', 'maria.oliveira@email.com', '2014-08-25', '7¬∫ Ano', 1),
+('Pedro Santos', 'pedro.santos@email.com', '2016-01-10', '5¬∫ Ano', 1),
+('Ana Clara Mendes', 'ana.mendes@email.com', '2013-11-30', '8¬∫ Ano', 2),
+('Lucas Ferreira', 'lucas.ferreira@email.com', '2015-03-18', '6¬∫ Ano', 2);
 
 -- =============================================
 -- INSERIR PROFESSORES
 -- =============================================
 
 INSERT INTO Professores (Nome, Email, Disciplina, Titulacao, EscolaId) VALUES 
-('Prof. Carlos Almeida', 'carlos.almeida@escola.com', 'Matem·tica', 'Mestre', 1),
-('Prof™ Juliana Costa', 'juliana.costa@escola.com', 'PortuguÍs', 'Doutora', 1),
-('Prof. Roberto Mendes', 'roberto.mendes@escola.com', 'HistÛria', 'Especialista', 1),
-('Prof™ Fernanda Lima', 'fernanda.lima@escola.com', 'CiÍncias', 'Mestre', 2),
-('Prof. Marcos Silva', 'marcos.silva@escola.com', 'InglÍs', 'Especialista', 2);
-
-
-
+('Prof. Carlos Almeida', 'carlos.almeida@escola.com', 'Matem√°tica', 'Mestre', 1),
+('Prof¬™ Juliana Costa', 'juliana.costa@escola.com', 'Portugu√™s', 'Doutora', 1),
+('Prof. Roberto Mendes', 'roberto.mendes@escola.com', 'Hist√≥ria', 'Especialista', 1),
+('Prof¬™ Fernanda Lima', 'fernanda.lima@escola.com', 'Ci√™ncias', 'Mestre', 2),
+('Prof. Marcos Silva', 'marcos.silva@escola.com', 'Ingl√™s', 'Especialista', 2);
 
 
 
@@ -226,5 +303,29 @@ LEFT JOIN Professores p ON p.EscolaId = e.Id;
 
 
 
+
+## üë®‚Äçüè´ Informa√ß√µes do Projeto
+
+- **Prof:** Francisco
+- **Disciplina:** DevOps & Cloud Computing
+- **Objetivo:** Demonstrar na pr√°tica os conceitos de DevOps
+
+
+
+
+
+## Doker no terminal
+
+docker-compose down --rmi all
+docker-compose build --no-cache
+docker-compose up
+
+
+
+
+
+
+
+```
 
 
