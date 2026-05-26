@@ -1,6 +1,8 @@
-﻿namespace ApiDockerPiaget.DTOs
+﻿using FluentValidation;
+
+namespace ApiDockerPiaget.DTOs
 {
-    
+
     public class AlunoDto
     {
         public int Id { get; set; }
@@ -10,5 +12,6 @@
         public string Serie { get; set; } = string.Empty;
         public int EscolaId { get; set; }
     }
+
 
 }

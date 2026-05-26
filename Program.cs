@@ -1,123 +1,68 @@
 using Microsoft.EntityFrameworkCore;
 using ApiDockerPiaget.Data;
-using System.Text.Json.Serialization;   // ? Adicionar
+using System.Text.Json.Serialization;
+using FluentValidation;
+using ApiDockerPiaget.Validators;
+using AutoMapper;
+using ApiDockerPiaget.Mappings;
+using ApiDockerPiaget.Middleware;
+using ApiDockerPiaget.HealthChecks;
+using Microsoft.Extensions.Diagnostics.HealthChecks;   // ? Adicionar
 
 var builder = WebApplication.CreateBuilder(args);
 
-// CORS
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll", policy =>
-        policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-});
+// ====================== SERVICES ======================
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddValidatorsFromAssemblyContaining<AlunoValidator>();
 
+builder.Services.AddCors(options => options.AddPolicy("AllowAll", p =>
+    p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
-// Controllers com configuração JSON
 builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-    {
-        // Solução para ciclos de referência
-        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
-        options.JsonSerializerOptions.MaxDepth = 64;           // Aumenta limite
-        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-    });
+    .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "API Escola Piaget",
+        Version = "v1"
+    });
+});
+
+// Health Checks Personalizados
+builder.Services.AddHealthChecks()
+    .AddCheck<DatabaseHealthCheck>("database", HealthStatus.Unhealthy)
+    .AddDbContextCheck<AppDbContext>("ef-core");
+
+
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
-
-
-
 var app = builder.Build();
 
+// ====================== MIDDLEWARE ======================
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => c.RoutePrefix = string.Empty);
     app.UseCors("AllowAll");
 }
+
+app.UseMiddleware<GlobalExceptionMiddleware>();
+
+// Health Checks Endpoints
+app.MapHealthChecks("/health");
+app.MapHealthChecks("/health/ready", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
+{
+    Predicate = check => check.Tags.Contains("ready")
+});
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//using Microsoft.EntityFrameworkCore;
-//using ApiDockerPiaget.Data;
-
-//var builder = WebApplication.CreateBuilder(args);
-
-//// CORS
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy("AllowAll", policy =>
-//    {
-//        policy.AllowAnyOrigin()
-//              .AllowAnyMethod()
-//              .AllowAnyHeader();
-//    });
-//});
-
-
-//// Controllers + Swagger
-//builder.Services.AddControllers();
-//builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
-
-//// SQL Server
-//builder.Services.AddDbContext<AppDbContext>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-
-
-
-
-//var app = builder.Build();
-
-//// Middleware
-//if (app.Environment.IsDevelopment())
-//{
-//    app.UseSwagger();
-//    app.UseSwaggerUI();
-//    app.UseCors("AllowAll");   // Permissivo em desenvolvimento
-//}
-
-//app.UseHttpsRedirection();
-//app.UseAuthorization();
-
-//app.MapControllers();
-
-//app.Run();
-
-
-
-
-
-

@@ -1,4 +1,174 @@
 
+# API Escola Piaget - DevOps & Cloud Computing
+
+## ?? Descrição do Projeto
+
+Este projeto consiste em uma **Web API REST** desenvolvida em .NET 8 para gerenciamento de uma escola, contendo as entidades **Escola**, **Aluno** e **Professor** com seus relacionamentos.
+
+O projeto foi desenvolvido como **trabalho prático** do curso de **DevOps**, com forte ênfase em containerização, automação, boas práticas de desenvolvimento e preparação para deploy em nuvem.
+
+
+
+## ?? Objetivos Alinhados ao Curso
+
+- **Módulo 1**: Aplicação dos conceitos básicos de DevOps, Cultura DevOps (colaboração, automação e CI/CD).
+- **Módulo 2**: Utilização de Cloud Computing (IaaS) através de containers.
+- **Módulo 3**: Prática com **Docker** (Aula 11), containerização e preparação para Kubernetes (Aula 12) e Pipeline CI/CD (Aula 13).
+- **Módulo 4**: Aplicação de boas práticas de segurança em aplicações DevOps.
+
+
+
+## ??? Tecnologias Utilizadas
+
+| Tecnologia                    | Versão     | Propósito |
+|------------------------------|------------|---------|
+| .NET                         | 8.0        | Framework principal |
+| ASP.NET Core Web API         | 8.0        | Criação da API REST |
+| Entity Framework Core        | 8.0        | ORM e persistência |
+| SQL Server                   | 2022       | Banco de dados |
+| AutoMapper                   | -          | Mapeamento de objetos |
+| FluentValidation             | -          | Validação de DTOs |
+| Swagger / OpenAPI            | -          | Documentação da API |
+| Docker                       | -          | Containerização |
+| Docker Compose               | -          | Orquestração de containers |
+| Health Checks                | -          | Monitoramento de saúde |
+| CORS                         | -          | Comunicação com frontends |
+
+
+
+## ? Funcionalidades
+
+- CRUD completo para **Escolas**, **Alunos** e **Professores**
+- Relacionamentos um-para-muitos (Escola ? Alunos/Professores)
+- Validação avançada com FluentValidation
+- Mapeamento automático com AutoMapper
+- Tratamento global de exceções
+- Health Checks personalizados
+- Documentação interativa com Swagger
+- Totalmente containerizado com Docker
+
+
+
+## ??? Arquitetura do Projeto
+
+### Estrutura de Pastas
+
+ApiDockerPiaget/
+??? Controllers/
+??? Data/
+??? DTOs/
+??? Models/
+??? Mappings/
+??? Validators/
+??? HealthChecks/
+??? Middleware/
+??? Properties/
+??? appsettings.json
+??? Dockerfile
+??? docker-compose.yml
+??? Program.cs
+
+
+### Diagrama UML (Contextual)
+classDiagram
+    class Escola {
+        +int Id
+        +string Nome
+        +string Endereco
+        +string Cidade
+        +string Telefone
+    }
+    class Aluno {
+        +int Id
+        +string Nome
+        +string Email
+        +DateTime DataNascimento
+        +string Serie
+        +int EscolaId
+    }
+    class Professor {
+        +int Id
+        +string Nome
+        +string Email
+        +string Disciplina
+        +string Titulacao
+        +int EscolaId
+    }
+
+    Escola "1" --> "N" Aluno
+    Escola "1" --> "N" Professor
+
+
+
+
+## ?? Como Executar o Projeto
+
+### 1. Local (sem Docker)
+dotnet restore
+dotnet build
+dotnet run
+
+
+Acesse: `http://localhost:5254/swagger`
+
+### 2. Com Docker (Recomendado - Aula 11)
+docker-compose up --build
+
+
+A API estará disponível em: `http://localhost:8080`
+Health Checks:
+- `http://localhost:8080/health`
+- `http://localhost:8080/health/ready`
+
+
+
+## ?? Endpoints Principais
+
+| Método | Endpoint              | Descrição |
+|--------|-----------------------|---------|
+| GET    | `/api/Escolas`        | Listar todas as escolas |
+| GET    | `/api/Alunos`         | Listar todos os alunos |
+| GET    | `/api/Professores`    | Listar todos os professores |
+| POST   | `/api/Alunos`         | Cadastrar aluno |
+| PUT    | `/api/Escolas/{id}`   | Atualizar escola |
+
+
+
+## ??? Boas Práticas de Segurança (Módulo 4)
+
+- Validação de entrada com FluentValidation
+- Tratamento global de exceções
+- CORS configurado
+- Health Checks para monitoramento
+- Uso de DTOs para não expor entidades diretamente
+
+
+
+## ?? DevOps & Cloud Computing Aplicados
+
+- **Infraestrutura como Código (IaC)**: `docker-compose.yml`
+- **Containerização**: Docker + Multi-stage build
+- **Automação**: Preparado para CI/CD (GitHub Actions / Azure DevOps)
+- **Cultura DevOps**: Separação clara de responsabilidades, colaboração entre Dev e Ops
+- **Cloud Ready**: Fácil deploy em Azure, AWS ou GCP (IaaS / PaaS)
+
+
+## ?? Próximos Passos (Melhorias Futuras)
+
+- Implementação de **Kubernetes** (Aula 12)
+- Pipeline completo de **CI/CD** (Aula 13)
+- Deploy na nuvem (Azure App Service ou AWS ECS)
+- Autenticação e Autorização (JWT)
+- Logging centralizado (Serilog + Seq)
+- Testes unitários e de integração
+
+
+## ????? Professor / Aluno
+
+**Disciplina**: DevOps & Cloud Computing  
+**Aluno**: Francisco  
+**Objetivo**: Demonstrar na prática os conceitos aprendidos nas Aulas 2 a 16.
+
 
 
 # INSERTs Completo (SQL Server)
